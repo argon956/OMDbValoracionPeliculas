@@ -1,0 +1,19 @@
+{
+  "name": "omdbvaloracionpeliculas",
+  "version": "1.0.0",
+  "description": "Valora las películas de la saga de Harry Potter",
+  "main": "index.js",
+  "scripts": {
+    "test": "verificar"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/argon956/OMDbValoracionPeliculas.git"
+  },
+  "author": "Iñaki Garcia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/argon956/OMDbValoracionPeliculas/issues"
+  },
+  "homepage": "https://github.com/argon956/OMDbValoracionPeliculas#readme"
+}
