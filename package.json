@@ -4,16 +4,33 @@
   "description": "Valora las películas de la saga de Harry Potter",
   "main": "index.js",
   "scripts": {
-    "test": "verificar"
+    "dev": "nodemon --ext '*' index.js",
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/argon956/OMDbValoracionPeliculas.git"
   },
+  "type": "module",
   "author": "Iñaki Garcia",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/argon956/OMDbValoracionPeliculas/issues"
   },
-  "homepage": "https://github.com/argon956/OMDbValoracionPeliculas#readme"
+  "homepage": "https://github.com/argon956/OMDbValoracionPeliculas#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "bootstrap": "^5.2.2",
+    "express": "^4.18.2",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "@prettier/plugin-pug": "^2.3.0",
+    "connect-livereload": "^0.6.1",
+    "dotenv": "^16.0.3",
+    "livereload": "^0.9.3",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1"
+  }
 }
