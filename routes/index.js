@@ -1,5 +1,5 @@
 import express from "express";
-import { paginaInicio } from "../controllers/pageController.js";
+import { paginaInicio } from "../controllers/controladorPagina.js";
 
 const router = express.Router();
 

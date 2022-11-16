@@ -1,18 +1,21 @@
 import express from "express";
-import router from "./routes/index.js";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
-// import db from './config/db.js';
+
+import conectarDB from "./config/gestionBBDD.js";
+
+import router from "./routes/index.js";
+import peliculaRoutes from "./routes/peliculaRoutes.js";
 
 import dotenv from "dotenv";
+import { inicializarDB } from "./controllers/controladorAPI.js";
 
 const app = express();
-
-// db.authenticate()
-//   .then(() => console.log('Base de Datos conectada'))
-//   .catch(error => console.error(error));
+app.use(express.json());
 
 dotenv.config({ path: ".env" });
+
+conectarDB();
 
 const host = process.env.HOST || "0.0.0.0";
 
@@ -40,7 +43,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.use("/", router);
+app.use("/api/peliculas", peliculaRoutes);
 
 app.listen(port, host, () => {
   console.log(`El servidor se está ejecutando en ${host}:${port}`);
 });
+
+inicializarDB();
