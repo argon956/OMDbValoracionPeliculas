@@ -2,6 +2,7 @@
 
 import mongoose from "mongoose";
 
+// TODO: estipular la bbdd / colección en el que se almacenan los datos
 const peliculasSchema = mongoose.Schema(
   {
     imdbID: {

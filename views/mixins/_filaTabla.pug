@@ -1,0 +1,13 @@
+mixin filaTabla(pelicula)
+  tr(id=pelicula.imdbID)
+    //- th(scope="row") contador-incremental
+    td #{ pelicula.imdbID }
+    td #{ pelicula.titulo }
+    td #{ pelicula.año }
+    td.valoracion-pelicula(valoracion=pelicula.valoracion)
+      - for (let i = 0; i < pelicula.valoracion; i++) {
+        span.fa.fa-star.checked(valor=i + 1)
+      - }
+      - for (let i = pelicula.valoracion; i < 5; i++) {
+        span.fa.fa-star(valor=i + 1)
+      - }
