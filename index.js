@@ -17,6 +17,8 @@ dotenv.config({ path: ".env" });
 
 conectarDB();
 
+inicializarDB();
+
 const host = process.env.HOST || "0.0.0.0";
 
 const port = process.env.PORT || 4000;
@@ -48,5 +50,3 @@ app.use("/api/peliculas", peliculaRoutes);
 app.listen(port, host, () => {
   console.log(`El servidor se está ejecutando en ${host}:${port}`);
 });
-
-inicializarDB();
