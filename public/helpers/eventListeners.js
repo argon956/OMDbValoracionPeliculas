@@ -1,4 +1,6 @@
 const valoraciones = document.querySelectorAll(".valoracion-pelicula");
+const filas = document.querySelector("tbody").children;
+const campoBusqueda = document.querySelector("#busqueda");
 let inputsPelis;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       estrella.addEventListener("click", actualizarValoracion);
     }
   }
+  campoBusqueda.addEventListener("keyup", aplicarBusqueda);
   inputsPelis = document.getElementsByTagName("input");
 });
 
@@ -64,7 +67,7 @@ const actualizarValoracion = async (e) => {
   formularioPadre.setAttribute("valoracion", nuevaValoracion);
 };
 
-async function postDatosFormularioJSON({ url, formData }) {
+const postDatosFormularioJSON = async ({ url, formData }) => {
   const datosPlanosFormulario = Object.fromEntries(formData.entries());
   const cadenaFormularioJson = JSON.stringify(datosPlanosFormulario);
 
@@ -85,4 +88,38 @@ async function postDatosFormularioJSON({ url, formData }) {
   }
 
   return respuesta.json();
-}
+};
+
+const aplicarBusqueda = (e) => {
+  const valor = e.target.value;
+
+  for (const fila of filas) {
+    fila.removeAttribute("hidden");
+
+    let imdbId = fila.children.item(0).textContent;
+    let titulo = fila.children.item(1).textContent.toLowerCase();
+    let año = fila.children.item(2).textContent;
+    let valoracion = fila.lastChild.firstChild.valoracion.value;
+
+    if (!isNaN(valor)) {
+      let numero = Number(valor);
+      if (valor.length == 1) {
+        if (valoracion != numero) {
+          fila.setAttribute("hidden", "");
+        }
+      } else {
+        if (!año.includes(valor)) {
+          fila.setAttribute("hidden", "");
+        }
+      }
+    } else {
+      if (valor.toLowerCase().startsWith("tt") && !isNaN(valor.charAt(2))) {
+        if (!imdbId.includes(valor.toLowerCase())) {
+          fila.setAttribute("hidden", "");
+        }
+      } else if (!titulo.includes(valor.toLowerCase())) {
+        fila.setAttribute("hidden", "");
+      }
+    }
+  }
+};

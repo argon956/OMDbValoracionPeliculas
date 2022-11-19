@@ -3,7 +3,14 @@ include mixins/_filaTabla
 
 block contenido
   .container-fluid
-    .container.mt-4
+    .container.mt-5
+      .form-floating.mb-3.rounded
+        input#busqueda.form-control(
+          type="busqueda",
+          placeholder="Introduzca criterio de búsqueda"
+        )
+        label(for="busqueda") Introduzca aquí el criterio de búsqueda -> Un dígito: valoracion | Varios dígitos: año | Texto: ID IMDb o título
+    .container.mt-3
       table.table
         thead
           tr
