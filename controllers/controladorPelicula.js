@@ -13,18 +13,18 @@ const agregarPelicula = async (req, res) => {
 };
 
 const actualizarPelicula = async (req, res) => {
-  const { id } = req.params;
+  const { id, valoracion } = req.body;
   const pelicula = await Pelicula.findById(id);
 
   if (!pelicula) {
     res.status(404).json({ msg: "Película no encontrada" });
   }
 
-  pelicula.valoracion = req.body.valoracion;
+  pelicula.valoracion = valoracion;
 
   try {
-    const peliculaActualizada = await pelicula.save();
-    res.json(peliculaActualizada);
+    await pelicula.save();
+    res.json({ msg: "Valoración almacenada correctamente" });
   } catch (error) {
     console.log(error);
   }

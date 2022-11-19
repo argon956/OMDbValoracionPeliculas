@@ -1,58 +1,16 @@
 extends ./layout/index
+include mixins/_filaTabla
 
-block content
+block contenido
   .container-fluid
     .container.mt-4
       table.table
         thead
           tr
-            th(scope="col") #
             th(scope="col") ID (IMDb)
             th(scope="col") Título
             th(scope="col") Año
             th(scope="col") Valoración
         tbody
-          tr
-            th(scope="row") 1
-            td ID1
-            td Película 1
-            td 1999
-            td
-              span.fa.fa-star.checked
-              span.fa.fa-star.checked
-              span.fa.fa-star.checked
-              span.fa.fa-star
-              span.fa.fa-star
-          tr
-            th(scope="row") 2
-            td ID2
-            td Película 2
-            td 2000
-            td
-              span.fa.fa-star.checked
-              span.fa.fa-star.checked
-              span.fa.fa-star.checked
-              span.fa.fa-star
-              span.fa.fa-star
-          tr
-            th(scope="row") 3
-            td ID3
-            td Película 3
-            td 2001
-            td
-              span.fa.fa-star.checked
-              span.fa.fa-star.checked
-              span.fa.fa-star.checked
-              span.fa.fa-star
-              span.fa.fa-star
-          tr
-            th(scope="row") 4
-            td ID4
-            td Película 4
-            td 2002
-            td
-              span.fa.fa-star.checked
-              span.fa.fa-star.checked
-              span.fa.fa-star.checked
-              span.fa.fa-star
-              span.fa.fa-star
+          each pelicula in peliculas
+            +filaTabla(pelicula)

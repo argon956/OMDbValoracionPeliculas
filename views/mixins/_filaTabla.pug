@@ -1,13 +1,21 @@
 mixin filaTabla(pelicula)
-  tr(id=pelicula.imdbID)
-    //- th(scope="row") contador-incremental
+  tr
     td #{ pelicula.imdbID }
     td #{ pelicula.titulo }
     td #{ pelicula.año }
-    td.valoracion-pelicula(valoracion=pelicula.valoracion)
-      - for (let i = 0; i < pelicula.valoracion; i++) {
-        span.fa.fa-star.checked(valor=i + 1)
-      - }
-      - for (let i = pelicula.valoracion; i < 5; i++) {
-        span.fa.fa-star(valor=i + 1)
-      - }
+    td
+      form.valoracion-pelicula(
+        action="/",
+        method="POST",
+        id=pelicula._id,
+        valoracion=pelicula.valoracion,
+        onsubmit="return false"
+      )
+        - for (let i = 0; i < pelicula.valoracion; i++) {
+          span.fa.fa-star.checked(valor=i + 1, name=pelicula._id)
+        - }
+        - for (let i = pelicula.valoracion; i < 5; i++) {
+          span.fa.fa-star(valor=i + 1, name=pelicula._id)
+        - }
+        input(type="hidden", name="id", value=pelicula._id)
+        input(type="hidden", name="valoracion", value=pelicula.valoracion)
