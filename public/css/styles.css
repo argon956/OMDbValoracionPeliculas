@@ -1,3 +1,7 @@
 .checked {
   color: orange;
 }
+
+.alert {
+  height: 50px;
+}

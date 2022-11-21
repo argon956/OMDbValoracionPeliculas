@@ -1,7 +1,24 @@
 const valoraciones = document.querySelectorAll(".valoracion-pelicula");
 const filas = document.querySelector("tbody").children;
 const campoBusqueda = document.querySelector("#busqueda");
+const contenedorAlerta = document.getElementById("contenedor-alerta");
+const plantillaAlerta = document.querySelector(".alert");
 let inputsPelis;
+
+const alerta = (mensaje, tipo, idPeli) => {
+  if (tipo == "" || tipo === undefined) {
+    tipo = "success";
+  }
+
+  console.log(plantillaAlerta);
+
+  let esqueletoAlerta = plantillaAlerta.cloneNode(true);
+
+  esqueletoAlerta.children.item(1).textContent = mensaje;
+  esqueletoAlerta.setAttribute("id", `alert-${idPeli}`);
+  esqueletoAlerta.classList.add(`alert-${tipo}`);
+  contenedorAlerta.appendChild(esqueletoAlerta);
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   for (const valoracion of valoraciones) {
@@ -59,6 +76,7 @@ const actualizarValoracion = async (e) => {
   try {
     const respuesta = await postDatosFormularioJSON({ url, formData });
 
+    generarAlerta({ respuesta });
     console.log({ respuesta });
   } catch (error) {
     console.error(error);
@@ -84,6 +102,7 @@ const postDatosFormularioJSON = async ({ url, formData }) => {
 
   if (!respuesta.ok) {
     const errorMessage = await respuesta.text();
+    generarAlerta({ respuesta });
     throw new Error(errorMessage);
   }
 
@@ -122,4 +141,18 @@ const aplicarBusqueda = (e) => {
       }
     }
   }
+};
+
+const generarAlerta = (res) => {
+  const { msg, imdbID: idPeli, tipo } = res.respuesta;
+
+  console.log(idPeli);
+
+  alerta(msg, tipo, idPeli);
+
+  let bsAlerta = new bootstrap.Alert(`#alert-${idPeli}`);
+
+  setTimeout(() => {
+    bsAlerta.close();
+  }, 3000);
 };

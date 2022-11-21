@@ -10,6 +10,18 @@ block contenido
           placeholder="Introduzca criterio de búsqueda"
         )
         label(for="busqueda") Introduzca aquí el criterio de búsqueda -> Un dígito: valoracion | Varios dígitos: año | Texto: ID IMDb o título
+    #contenedor-alerta.container
+      div(hidden="")
+        .alert.alert-dismissible.fade.show.d-flex.align-items-center(id="alert-${idPeli}",
+          role="alert"
+        )
+          i.fa.fa-check.ms-1.me-3
+          div ${mensaje}
+          button.btn-close(
+            type="button",
+            data-bs-dismiss="alert",
+            aria-label="Close"
+          )
     .container.mt-3
       table.table
         thead

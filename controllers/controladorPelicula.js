@@ -24,8 +24,16 @@ const actualizarPelicula = async (req, res) => {
 
   try {
     await pelicula.save();
-    res.json({ msg: "Valoración almacenada correctamente" });
+    res.json({
+      msg: `Valoración para película con ID: ${pelicula.imdbID} almacenada correctamente`,
+      imdbID: pelicula.imdbID,
+    });
   } catch (error) {
+    res.json({
+      msg: error,
+      imdbID: pelicula.imdbID,
+      tipo: "error",
+    });
     console.log(error);
   }
 };
