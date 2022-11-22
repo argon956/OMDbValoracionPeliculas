@@ -1,9 +1,6 @@
 import express from "express";
 import { paginaInicio } from "../controllers/controladorPagina.js";
-import {
-  actualizarPelicula,
-  agregarPelicula,
-} from "../controllers/controladorPelicula.js";
+import { actualizarPelicula } from "../controllers/controladorPelicula.js";
 
 const router = express.Router();
 

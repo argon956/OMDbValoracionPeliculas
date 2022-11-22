@@ -38,7 +38,6 @@ export const inicializarDB = async () => {
         (peli) => !idsPelisAlmacenadas.includes(peli.imdbID)
       );
     }
-    // TODO: mostrar una alerta, en caso de que no se hayan podido cargar correctamente las películas a importar
     for (const pelicula of peliculasImportadas) {
       await clienteAxios.post("/peliculas", pelicula);
     }
