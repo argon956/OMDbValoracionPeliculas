@@ -1,8 +1,8 @@
 mixin filaTabla(pelicula)
-  tr
-    td #{ pelicula.imdbID }
-    td #{ pelicula.titulo }
-    td #{ pelicula.año }
+  tr(data-cy="fila-#{pelicula.imdbID}")
+    td(data-cy="id-#{pelicula.imdbID}") #{ pelicula.imdbID }
+    td(data-cy="titulo-#{pelicula.imdbID}") #{ pelicula.titulo }
+    td(data-cy="año-#{pelicula.imdbID}") #{ pelicula.año }
     td
       form.valoracion-pelicula(
         action="/",
@@ -12,10 +12,18 @@ mixin filaTabla(pelicula)
         onsubmit="return false"
       )
         - for (let i = 0; i < pelicula.valoracion; i++) {
-          span.fa.fa-star.checked(valor=i + 1, name=pelicula._id)
+          span.fa.fa-star.checked(
+            valor=i + 1,
+            name=pelicula._id,
+            data-cy=`valorar-${pelicula.imdbID}-con-${i+1}`
+          )
         - }
         - for (let i = pelicula.valoracion; i < 5; i++) {
-          span.fa.fa-star(valor=i + 1, name=pelicula._id)
+          span.fa.fa-star(
+            valor=i + 1,
+            name=pelicula._id,
+            data-cy=`valorar-${pelicula.imdbID}-con-${i+1}`
+          )
         - }
         input(type="hidden", name="id", value=pelicula._id)
         input(type="hidden", name="valoracion", value=pelicula.valoracion)
